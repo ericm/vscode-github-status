@@ -45,10 +45,10 @@ export default class {
       this.__start = time;
     } else {
       let diffN = time.diff(this.__start, "minutes");
-      diff = `(${diffN} minute(s))`;
+      diff = `(${diffN} minute${diffN > 1 && "s"}`;
       if (diffN > 60) {
         let diffNStr = time.diff(this.__start, "hours", true).toFixed(2);
-        diff = `(${diffNStr} hour(s))`;
+        diff = `(${diffNStr} hours)`;
       }
     }
     const status: UserStatus = {
