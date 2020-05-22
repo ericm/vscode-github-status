@@ -10,10 +10,23 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "*",
+    "onCommand:githubstatus.restart"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": [
+      {
+        "title": "GitHub Status Presence",
+        "properties": {
+          "githubstatus.token": {
+            "type": "string",
+            "default": "",
+            "description": "GitHub User Access Token"
+          }
+        }
+      }
+    ],
     "commands": [
       {
         "command": "githubstatus.createToken",
@@ -22,6 +35,10 @@
       {
         "command": "githubstatus.accessToken",
         "title": "Set GitHub Access Token"
+      },
+      {
+        "command": "githubstatus.restart",
+        "title": "Restart GitHub Status Presence"
       }
     ]
   },
