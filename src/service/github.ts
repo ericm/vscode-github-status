@@ -32,13 +32,19 @@ export default class {
     this.__api = gitHubApi.defaults(config);
   }
 
-  public updateStatus(workspace: vscode.WorkspaceFolder) {
+  public async updateStatus(workspace: string) {
     const status: UserStatus = {
       expiresAt: new Date(
         new Date().getTime() + this.__expires * 60000
       ).toISOString(),
-      message: `Working on ${workspace.name}`,
+      message: `Working on ${workspace}`,
+      emoji: ":zap:",
     };
-    this.__api(changeUserStatusMutation, { request: {}, status });
+    try {
+      await this.__api(changeUserStatusMutation, { request: {}, status });
+    } catch (err) {
+      console.error(err);
+    }
+    setTimeout(() => this.updateStatus(workspace), this.__expires * 60000);
   }
 }
