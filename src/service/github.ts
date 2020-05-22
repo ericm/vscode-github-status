@@ -22,12 +22,15 @@ const changeUserStatusMutation = `
 export default class {
   private __api: graphql;
   private __expires: number = 30;
+  public received = false;
   constructor(token?: string) {
     const config: RequestParameters = {};
     if (token) {
+      this.received = true;
       config.headers = { authorization: `token ${token}` };
     } else {
       // Get token
+      vscode.commands.executeCommand("githubstatus.createToken");
     }
     this.__api = gitHubApi.defaults(config);
   }

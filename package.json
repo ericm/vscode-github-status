@@ -16,8 +16,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "github-status-presence.helloWorld",
-        "title": "Hello World"
+        "command": "githubstatus.createToken",
+        "title": "Create Token"
+      },
+      {
+        "command": "githubstatus.accessToken",
+        "title": "Set GitHub Access Token"
       }
     ]
   },
