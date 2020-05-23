@@ -12,7 +12,7 @@ The extension will read your current workspace as well as how long it's been ope
 
 The extension will post to GitHub every X amount of minutes (configurable in settings, default is 5). **It will also set the expiry time of the status to the interval time so it will be cleared after the workspace is closed.**
 
-It provides a status icon which can be clicked to enable/disable the extension for the current session (or you can blacklist it's path in settings):
+It provides a status icon which can be clicked to enable/disable the extension for the current session (or you can blacklist its path in settings):
 
 ![GitHub Status Syncing](https://github.com/ericm/vscode-github-status/blob/master/assets/2.png?raw=true)
 
