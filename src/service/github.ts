@@ -43,14 +43,19 @@ export default class {
     this.__api = gitHubApi.defaults(config);
   }
 
-  public async updateStatus(workspace: string) {
+  public async updateStatus(workspace: string): Promise<NodeJS.Timeout | null> {
     const emoji = vscode.workspace
       .getConfiguration("githubstatus")
       .get("emoji") as Emoji;
     const time = moment(new Date());
     let diff = "";
+    let interval: NodeJS.Timeout | null = null;
     if (!this.__start) {
       this.__start = time;
+      interval = setInterval(
+        () => this.updateStatus(workspace),
+        this.__expires * 60000
+      );
     } else {
       let diffN = time.diff(this.__start, "minutes");
       diff = `(${diffN} minute${diffN > 1 ? "s" : ""})`;
@@ -71,7 +76,7 @@ export default class {
     } catch (err) {
       console.error(err);
     } finally {
-      setTimeout(() => this.updateStatus(workspace), this.__expires * 60000);
+      return interval;
     }
   }
 }

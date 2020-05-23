@@ -7,12 +7,13 @@ const statusBarIcon = vscode.window.createStatusBarItem(
 statusBarIcon.text = "$(pulse) Sending to GitHub status...";
 
 let config = vscode.workspace.getConfiguration("githubstatus");
+let interval: NodeJS.Timeout | null = null;
 
 export async function activate(context: vscode.ExtensionContext) {
   const token = config.get<string>("token");
   const gitHubService = new GitHubServce(token);
   if (gitHubService.received && vscode.workspace.name) {
-    gitHubService.updateStatus(vscode.workspace.name);
+    interval = await gitHubService.updateStatus(vscode.workspace.name);
   }
   let disposable = vscode.commands.registerCommand(
     "githubstatus.createToken",
@@ -62,4 +63,8 @@ export async function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable, accessToken, restart);
 }
 
-export function deactivate() {}
+export function deactivate() {
+  if (interval) {
+    clearInterval(interval);
+  }
+}
