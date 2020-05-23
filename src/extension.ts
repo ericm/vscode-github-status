@@ -23,7 +23,6 @@ export async function activate(context: vscode.ExtensionContext) {
   }
   statusBarIcon.text = "GitHub Status Syncing";
   statusBarIcon.command = "githubstatus.deactivate";
-  statusBarIcon.color = "icon.foreground";
   statusBarIcon.tooltip = "Click to turn off syncing";
   try {
     let disposable = vscode.commands.registerCommand(
@@ -90,7 +89,6 @@ export async function activate(context: vscode.ExtensionContext) {
 export function deactivate() {
   statusBarIcon.text = "GitHub Status Not Syncing";
   statusBarIcon.command = "githubstatus.restart";
-  statusBarIcon.color = "icon.foreground";
   statusBarIcon.tooltip = "Click to turn on syncing";
   if (interval) {
     clearInterval(interval);

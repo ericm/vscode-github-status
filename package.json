@@ -1,14 +1,20 @@
 {
   "name": "github-status-presence",
   "displayName": "GitHub Status Presence",
-  "description": "",
-  "version": "0.0.1",
+  "description": "An extension that will sync your current workspace name and time spent on it to your GitHub status",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.45.0"
+  },
+  "author": {
+    "name": "Eric Moynihan",
+    "email": "git@moynihan.io",
+    "url": "https://github.com/ericm"
   },
   "categories": [
     "Other"
   ],
+  "homepage": "https://github.com/ericm/vscode-github-status",
   "activationEvents": [
     "*",
     "onCommand:githubstatus.restart"
