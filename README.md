@@ -1,65 +1,32 @@
-# github-status-presence README
+# <div style="text-align: center;">![](./icons/icon128.png?raw=true)</div> Visual Studio Code Github Status Presence
 
-This is the README for your extension "github-status-presence". After writing up a brief description, we recommend including the following sections.
+An extension that will sync your current workspace name and time spent on it to your GitHub status
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+The extension will read your current workspace as well as how long it's been open and sync it your GitHub profile like so:
 
-For example if there is an image subfolder under your extension project workspace:
+![Working on you (1 minute)](./assets/1.png)
 
-\!\[feature X\]\(images/feature-x.png\)
+The extension will post to GitHub every X amount of minutes (configurable in settings, default is 5). **It will also set the expirey time of the status to the interval time so it will be cleared after the workspace is closed.**
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+It provides a status icon which can be clicked to enable/disable the extension for the current session (or you cna blacklist it's path in settings):
 
-## Requirements
+![GitHub Status Syncing](./assets/2.png)
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+The emoji is also configurable :0
+
+## Setting it up
+
+If no GitHub token is found, it will ask for one. It will direct you to the tokens page where you will make one and paste it into the input box. Just ensure you have the folloing token permission set:
+
+![[users]](./assets/3.png)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- `githubstatus.token`: GitHub User Access Token
+- `githubstatus.interval`: Refresh interval / Expirey time for GitHub Status (in minutes)
+- `githubstatus.blacklist`: Blacklist of workspace paths that wont be synced
+- `githubstatus.emoji`: Emoji used for status. See [this gist](https://gist.github.com/rxaviers/7360908) for full list of options
