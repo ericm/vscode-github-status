@@ -10,11 +10,12 @@ let config = vscode.workspace.getConfiguration("githubstatus");
 let interval: NodeJS.Timeout | null = null;
 
 export async function activate(context: vscode.ExtensionContext) {
+  statusBarIcon.show();
   const folders = vscode.workspace.workspaceFolders;
   if (!folders || folders[0].uri.fsPath in config.get<string[]>("blacklist")!) {
+    statusBarIcon.text = "GitHub Status Blacklisted";
     return;
   }
-  statusBarIcon.show();
   const token = config.get<string>("token");
   const gitHubService = new GitHubServce(token);
   if (gitHubService.received && vscode.workspace.name) {
@@ -22,6 +23,8 @@ export async function activate(context: vscode.ExtensionContext) {
   }
   statusBarIcon.text = "GitHub Status Syncing";
   statusBarIcon.command = "githubstatus.deactivate";
+  statusBarIcon.color = "icon.foreground";
+  statusBarIcon.tooltip = "Click to turn off syncing";
   try {
     let disposable = vscode.commands.registerCommand(
       "githubstatus.createToken",
@@ -87,6 +90,8 @@ export async function activate(context: vscode.ExtensionContext) {
 export function deactivate() {
   statusBarIcon.text = "GitHub Status Not Syncing";
   statusBarIcon.command = "githubstatus.restart";
+  statusBarIcon.color = "icon.foreground";
+  statusBarIcon.tooltip = "Click to turn on syncing";
   if (interval) {
     clearInterval(interval);
   }
