@@ -23,6 +23,16 @@
             "type": "string",
             "default": "",
             "description": "GitHub User Access Token"
+          },
+          "githubstatus.interval": {
+            "type": "integer",
+            "default": 5,
+            "description": "Refresh interval / Expirey time for GitHub Status (in minutes)"
+          },
+          "githubstatus.emoji": {
+            "type": "string",
+            "default": ":zap:",
+            "description": "Emoji used for status. See https://gist.github.com/rxaviers/7360908 for full list of options"
           }
         }
       }

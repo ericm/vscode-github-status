@@ -8,6 +8,7 @@ interface IEnv {
 }
 
 const OFFSET = 10000;
+
 const changeUserStatusMutation = `
   mutation ($status: ChangeUserStatusInput!) {
     changeUserStatus(input: $status) {
@@ -28,6 +29,10 @@ export default class {
   public received = false;
   constructor(token?: string) {
     const config: RequestParameters = {};
+
+    this.__expires =
+      vscode.workspace.getConfiguration("githubstatus").get("interval") ?? 1;
+
     if (token) {
       this.received = true;
       config.headers = { authorization: `token ${token}` };
@@ -39,6 +44,9 @@ export default class {
   }
 
   public async updateStatus(workspace: string) {
+    const emoji = vscode.workspace
+      .getConfiguration("githubstatus")
+      .get("emoji") as Emoji;
     const time = moment(new Date());
     let diff = "";
     if (!this.__start) {
@@ -56,13 +64,14 @@ export default class {
         OFFSET + new Date().getTime() + this.__expires * 60000
       ).toISOString(),
       message: `Working on ${workspace} ${diff}`,
-      emoji: ":zap:",
+      emoji,
     };
     try {
       await this.__api(changeUserStatusMutation, { request: {}, status });
     } catch (err) {
       console.error(err);
+    } finally {
+      setTimeout(() => this.updateStatus(workspace), this.__expires * 60000);
     }
-    setTimeout(() => this.updateStatus(workspace), this.__expires * 60000);
   }
 }
