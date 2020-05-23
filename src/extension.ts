@@ -6,7 +6,7 @@ const statusBarIcon = vscode.window.createStatusBarItem(
 );
 statusBarIcon.text = "$(pulse) Sending to GitHub status...";
 
-const config = vscode.workspace.getConfiguration("githubstatus");
+let config = vscode.workspace.getConfiguration("githubstatus");
 
 export async function activate(context: vscode.ExtensionContext) {
   const token = config.get<string>("token");
@@ -46,7 +46,7 @@ export async function activate(context: vscode.ExtensionContext) {
         if (!newToken) {
           vscode.commands.executeCommand("githubstatus.accessToken");
         } else {
-          await config.update("token", newToken);
+          await config.update("token", newToken, 1);
           vscode.commands.executeCommand("githubstatus.restart");
         }
       } catch (err) {
@@ -54,10 +54,11 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     }
   );
-  let restart = vscode.commands.registerCommand(
-    "githubstatus.restart",
-    () => {}
-  );
+  let restart = vscode.commands.registerCommand("githubstatus.restart", () => {
+    console.log("Restart");
+    config = vscode.workspace.getConfiguration("githubstatus");
+    activate(context);
+  });
   context.subscriptions.push(disposable, accessToken, restart);
 }
 
