@@ -29,6 +29,11 @@
             "default": 5,
             "description": "Refresh interval / Expirey time for GitHub Status (in minutes)"
           },
+          "githubstatus.blacklist": {
+            "type": "array",
+            "default": [],
+            "description": "Blacklist of workspace paths that wont be synced"
+          },
           "githubstatus.emoji": {
             "type": "string",
             "default": ":zap:",
