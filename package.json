@@ -12,6 +12,11 @@
     "email": "git@moynihan.io",
     "url": "https://github.com/ericm"
   },
+  "publisher": "ericm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericm/vscode-github-status"
+  },
   "categories": [
     "Other"
   ],
