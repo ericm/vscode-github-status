@@ -6,7 +6,7 @@
   "engines": {
     "vscode": "^1.45.0"
   },
-  "icon": "icon/icon128.png",
+  "icon": "icons/icon128.png",
   "author": {
     "name": "Eric Moynihan",
     "email": "git@moynihan.io",

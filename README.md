@@ -1,5 +1,7 @@
 # <div style="text-align: center;">![](https://github.com/ericm/vscode-github-status/blob/master/icons/icon128.png?raw=true)</div> Visual Studio Code Github Status Presence
 
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/ericm.github-status-presence?style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=ericm.github-status-presence)
+
 An extension that will sync your current workspace name and time spent on it to your GitHub status
 
 ## Features
