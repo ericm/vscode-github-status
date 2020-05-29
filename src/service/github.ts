@@ -79,4 +79,19 @@ export default class {
       return interval;
     }
   }
+  public async setDefault(): Promise<void> {
+    const message = "Trying";
+    const emoji = vscode.workspace
+      .getConfiguration("githubstatus")
+      .get("emoji") as Emoji;
+    const status: UserStatus = {
+      emoji,
+      message,
+    };
+    try {
+      await this.__api(changeUserStatusMutation, { request: {}, status });
+    } catch (err) {
+      console.error(err);
+    }
+  }
 }

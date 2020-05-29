@@ -8,6 +8,7 @@ statusBarIcon.text = "$(pulse) Sending to GitHub status...";
 
 let config = vscode.workspace.getConfiguration("githubstatus");
 let interval: NodeJS.Timeout | null = null;
+let gitHubService: GitHubServce;
 
 export async function activate(context: vscode.ExtensionContext) {
   statusBarIcon.show();
@@ -17,7 +18,7 @@ export async function activate(context: vscode.ExtensionContext) {
     return;
   }
   const token = config.get<string>("token");
-  const gitHubService = new GitHubServce(token);
+  gitHubService = new GitHubServce(token);
   if (gitHubService.received && vscode.workspace.name) {
     interval = await gitHubService.updateStatus(vscode.workspace.name);
   }
@@ -86,11 +87,12 @@ export async function activate(context: vscode.ExtensionContext) {
   }
 }
 
-export function deactivate() {
+export async function deactivate() {
   statusBarIcon.text = "GitHub Status Not Syncing";
   statusBarIcon.command = "githubstatus.restart";
   statusBarIcon.tooltip = "Click to turn on syncing";
   if (interval) {
     clearInterval(interval);
   }
+  await gitHubService.setDefault();
 }
