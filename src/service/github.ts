@@ -80,7 +80,12 @@ export default class {
     }
   }
   public async setDefault(): Promise<void> {
-    const message = "Trying";
+    const message = vscode.workspace
+      .getConfiguration("githubstatus")
+      .get("default") as string;
+    if (!message) {
+      return;
+    }
     const emoji = vscode.workspace
       .getConfiguration("githubstatus")
       .get("emoji") as Emoji;

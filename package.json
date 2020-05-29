@@ -46,6 +46,11 @@
             "default": [],
             "description": "Blacklist of workspace paths that wont be synced"
           },
+          "githubstatus.default": {
+            "type": "string",
+            "default": "",
+            "description": "Default status message to set your profile to upon closing of the application."
+          },
           "githubstatus.emoji": {
             "type": "string",
             "default": ":zap:",
