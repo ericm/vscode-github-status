@@ -88,7 +88,7 @@ export default class {
     }
     const emoji = vscode.workspace
       .getConfiguration("githubstatus")
-      .get("emoji") as Emoji;
+      .get("emojiDefault") as Emoji;
     const status: UserStatus = {
       emoji,
       message,
