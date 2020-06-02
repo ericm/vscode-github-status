@@ -5,7 +5,7 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/ericm/vscode-github-status?style=for-the-badge)](https://github.com/ericm/vscode-github-status/graphs/contributors)
 [![GitHub last commit](https://img.shields.io/github/last-commit/ericm/vscode-github-status?style=for-the-badge)](https://github.com/ericm/vscode-github-status/commits/master)
 
-An extension that will sync your current workspace name and time spent on it to your GitHub status
+An extension that will sync your current workspace name and time spent on it to your GitHub status.
 
 ## Features
 

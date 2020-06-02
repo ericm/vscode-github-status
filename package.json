@@ -34,17 +34,17 @@
           "githubstatus.token": {
             "type": "string",
             "default": "",
-            "description": "GitHub User Access Token"
+            "description": "GitHub User Access Token."
           },
           "githubstatus.interval": {
             "type": "integer",
             "default": 5,
-            "description": "Refresh interval / Expirey time for GitHub Status (in minutes)"
+            "description": "Refresh interval / Expirey time for GitHub Status (in minutes)."
           },
           "githubstatus.blacklist": {
             "type": "array",
             "default": [],
-            "description": "Blacklist of workspace paths that wont be synced"
+            "description": "Blacklist of workspace paths that wont be synced."
           },
           "githubstatus.default": {
             "type": "string",
@@ -1526,7 +1526,7 @@
               ":zipper_mouth_face:",
               ":zzz:"
             ],
-            "markdownDescription": "Emoji used for **default** status. See [this gist](https://gist.github.com/rxaviers/7360908) for full list of options"
+            "markdownDescription": "Emoji used for **default** status. See [this gist](https://gist.github.com/rxaviers/7360908) for full list of options."
           },
           "githubstatus.emoji": {
             "type": "string",
@@ -3003,7 +3003,7 @@
               ":zipper_mouth_face:",
               ":zzz:"
             ],
-            "markdownDescription": "Emoji used for status. See [this gist](https://gist.github.com/rxaviers/7360908) for full list of options"
+            "markdownDescription": "Emoji used for status. See [this gist](https://gist.github.com/rxaviers/7360908) for full list of options."
           }
         }
       }
