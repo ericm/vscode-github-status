@@ -57,11 +57,15 @@ export default class {
         this.__expires * 60000
       );
     } else {
-      let diffN = time.diff(this.__start, "minutes");
+      let diffN = Math.floor(time.diff(this.__start, "minutes"));
       diff = `(${diffN} minute${diffN > 1 ? "s" : ""})`;
       if (diffN > 60) {
-        let diffNStr = time.diff(this.__start, "hours", true).toFixed(2);
-        diff = `(${diffNStr} hours)`;
+        const hours = Math.floor(diffN / 60);
+        const minutes = Math.floor(diffN % 60);
+        console.log(diffN, time.diff(this.__start, "minutes"), hours, minutes);
+        diff = `(${hours} hour${hours > 1 ? "s" : ""} ${minutes} minute${
+          minutes > 1 ? "s" : ""
+        })`;
       }
     }
     const status: UserStatus = {

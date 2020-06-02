@@ -36,3 +36,4 @@ This extension contributes the following settings:
 - `githubstatus.default`: Default status message to set your profile to upon closing of the application.
 - `githubstatus.blacklist`: Blacklist of workspace paths that won't be synced
 - `githubstatus.emoji`: Emoji used for status. See [this gist](https://gist.github.com/rxaviers/7360908) for full list of options
+- `githubstatus.emojiDefault`: Emoji used for default status. See [this gist](https://gist.github.com/rxaviers/7360908) for full list of options
