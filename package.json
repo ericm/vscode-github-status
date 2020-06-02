@@ -2,7 +2,7 @@
   "name": "github-status-presence",
   "displayName": "GitHub Status Presence",
   "description": "An extension that will sync your current workspace name and time spent on it to your GitHub status",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "vscode": "^1.45.0"
   },
