@@ -26,12 +26,13 @@ export default class {
   private __api: graphql;
   private __expires = 1;
   private __start?: moment.Moment;
+  private __currentLanguage?: string;
   public received = false;
   constructor(token?: string) {
     const config: RequestParameters = {};
 
-    this.__expires =
-      vscode.workspace.getConfiguration("githubstatus").get("interval") ?? 1;
+    this.__expires = 0.5;
+      //vscode.workspace.getConfiguration("githubstatus").get("interval") ?? 1;
 
     if (token) {
       this.received = true;
@@ -41,6 +42,10 @@ export default class {
       vscode.commands.executeCommand("githubstatus.createToken");
     }
     this.__api = gitHubApi.defaults(config);
+
+    vscode.workspace.onDidSaveTextDocument((e) => {
+      this.__currentLanguage = e.languageId;
+    });
   }
 
   public async updateStatus(workspace: string): Promise<NodeJS.Timeout | null> {
@@ -68,11 +73,12 @@ export default class {
         })`;
       }
     }
+
     const status: UserStatus = {
       expiresAt: new Date(
         OFFSET + new Date().getTime() + this.__expires * 60000
       ).toISOString(),
-      message: `Working on ${workspace} ${diff}`,
+      message: `Working on ${workspace}${this.__currentLanguage ? ` in ${this.__currentLanguage}` : ""}${diff.length > 0 ? ` for ${diff}` : ""}`,
       emoji,
     };
     try {
