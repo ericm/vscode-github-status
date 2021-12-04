@@ -31,8 +31,8 @@ export default class {
   constructor(token?: string) {
     const config: RequestParameters = {};
 
-    this.__expires = 0.5;
-      //vscode.workspace.getConfiguration("githubstatus").get("interval") ?? 1;
+    this.__expires =
+      vscode.workspace.getConfiguration("githubstatus").get("interval") ?? 1;
 
     if (token) {
       this.received = true;
